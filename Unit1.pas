@@ -1,13 +1,17 @@
 unit Unit1;
-//
+
 interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs;
+  Dialogs, Grids, StdCtrls;
 
 type
   TForm1 = class(TForm)
+    lbl1: TLabel;
+    lbl2: TLabel;
+    btnopen: TButton;
+    strngrd1: TStringGrid;
   private
     { Private declarations }
   public
@@ -22,4 +26,3 @@ implementation
 {$R *.dfm}
 
 end.
- 
