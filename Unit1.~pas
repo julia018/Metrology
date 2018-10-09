@@ -12,17 +12,64 @@ type
     lbl2: TLabel;
     btnopen: TButton;
     strngrd1: TStringGrid;
+    dlgOpen: TOpenDialog;
+    btn1: TButton;
+    Memo1: TMemo;
+    btn2: TButton;
+    procedure FormCreate(Sender: TObject);
+    procedure btnopenClick(Sender: TObject);
+    procedure btn1Click(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
   end;
 
+type
+  Adr = ^List;
+  //Список операторов\операндов
+  List = record
+    Oper: string[255];
+    Repeating: Integer;
+    Next: Adr;
+    end;
+
 var
   Form1: TForm1;
 
+  Operator: Adr;  //Адрес начала списка операторов
+  Operand: Adr;   //Адрес начала списка операндов
 implementation
 
 {$R *.dfm}
+
+procedure TForm1.FormCreate(Sender: TObject);
+var
+  Row: Integer;
+begin
+  //Создание двух списков: операндов и операторов
+  New(Operator);
+  Operator.Next:= nil;
+  New(Operand);
+  Operand.Next := nil;
+  Row := 0;
+  strngrd1.Cells[0,Row] := '          j';
+  strngrd1.Cells[1,Row] := '    Оператор';
+  strngrd1.Cells[2,Row] := '          f1j';
+  strngrd1.Cells[3,Row] := '          i';
+  strngrd1.Cells[4,Row] := '     Операнд';
+  strngrd1.Cells[5,Row] := '          f2j';
+end;
+
+procedure TForm1.btnopenClick(Sender: TObject);
+begin
+  if dlgOpen.Execute then
+      Memo1.Lines.LoadFromFile(dlgOpen.FileName);
+end;
+
+procedure TForm1.btn1Click(Sender: TObject);
+begin
+  Memo1.Clear;
+end;
 
 end.
